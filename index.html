@@ -28,11 +28,12 @@
             var app = angular.module('app', []);
             app.controller('Controller', ["$scope", "$http", function($scope, $http) {
                 console.log("starting Controller", $http);
+                $scope.api_endpoint = "https://dev.firstdraftgis.com";
                 $scope.geolocate = function() {
                     var tweet_text = $scope.tweet_text;
                     console.log("geolocating" + tweet_text);
                     if (tweet_text && tweet_text.length > 5) {
-                        $http.post("/api/geolocate_tweet", {
+                        $http.post($scope.api_endpoint + "/api/geolocate_tweet", {
                             text: tweet_text
                         }).then(function(response) {
                             console.log("response:", response);
