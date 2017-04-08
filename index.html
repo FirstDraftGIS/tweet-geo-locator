@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Tweet Geo-Locator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+   </head>
+    <body>
+        <div class="container-fluid" style="max-width: 700px" ng-controller="Controller">
+            </br>
+            <div class="header text-center">
+                <h1>Tweet Geo-Locator</h1>
+                <h3>Locate Tweet When GeoLocation Is Turned Off!</h3>
+                </br>
+                <label for="tweet-text">Enter Tweet Below</label>
+                <div class="input-group">
+                    <textarea class="form-control" id="tweet-text" aria-describedby="tweet-text" ng-model="tweet_text" placeholder="Enter Tweet Text Here"></textarea>
+                </div>
+                </br>
+                <button class="btn btn-md btn-primary" ng-click="geolocate()" style="cursor: pointer;">Geolocate</button>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script>
+            var app = angular.module('app', []);
+            app.controller('Controller', ["$scope", "$http", function($scope, $http) {
+                console.log("starting Controller", $http);
+                $scope.geolocate = function() {
+                    var tweet_text = $scope.tweet_text;
+                    console.log("geolocating" + tweet_text);
+                    if (tweet_text && tweet_text.length > 5) {
+                        $http.post("/api/geolocate_tweet", {
+                            text: tweet_text
+                        }).then(function(response) {
+                            console.log("response:", response);
+                        });
+                    }
+                };
+            }]);
+        </script>
+    </body>
+</html>
