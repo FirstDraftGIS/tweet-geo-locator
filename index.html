@@ -36,6 +36,62 @@
                         </tbody>
                     </table>
                 </div>
+                </br>
+                </br>
+                <h3>API</h3>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#http" role="tab">HTTP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#angular1" role="tab">JavaScript (Angular 1)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#python" role="tab">Python</a>
+                    </li>
+                </ul>
+                </br>
+                <div class="tab-content text-left">
+                    <div class="tab-pane active" id="http" role="tabpanel"><pre><code>
+Request Headers
+POST /api/geolocate_tweet HTTP/1.1
+Host: dev.firstdraftgis.com
+Connection: keep-alive
+Content-Length: 106
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: application/json, text/plain, */*
+Origin: http://dev.firstdraftgis.com:8000
+User-Agent: Mozilla/5.0 (X11; CrOS x86_64 9202.60.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.137 Safari/537.36
+Content-Type: application/json;charset=UTF-8
+Referer: http://dev.firstdraftgis.com:8000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.8
+
+Request Payload
+{"text":"Flood-risk areas in Bekasi likely to increase due to overflowing streams: Agency - Jakarta Post"}
+                    </pre></code></div>
+                    <div class="tab-pane" id="angular1" role="tabpanel">
+                        <pre><code>
+var url = "https://dev.firstdraftgis.com/api/geolocate_tweet";
+var tweet_text = "Flood-risk areas in Bekasi likely to increase due to overflowing streams: Agency - Jakarta Post";
+var data = { text: tweet_text };
+$http.post(url, data).then(function(response) {
+    console.log("latitude:", response.data.latitude);
+    console.log("longitude:", response.data.longitude);
+});</pre></code>
+                    </div>
+                    <div class="tab-pane" id="python" role="tabpanel"><pre><code>
+from requests import post
+
+url = "https://dev.firstdraftgis.com/api/geolocate_tweet"
+tweet_text = "Flood-risk areas in Bekasi likely to increase due to overflowing streams: Agency - Jakarta Post"
+data = {"text": tweet_text}
+response = post(url, data).json()
+print "latitude:", response.latitude
+print "longitude:", response.longitude
+                    </code></pre></div>
+                </div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
