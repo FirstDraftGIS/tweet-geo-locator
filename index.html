@@ -54,16 +54,16 @@
                     <div class="tab-pane active" id="http" role="tabpanel"><pre><code>
 Request Headers
 POST /api/geolocate_tweet HTTP/1.1
-Host: dev.firstdraftgis.com
+Host: firstdraftgis.com
 Connection: keep-alive
 Content-Length: 106
 Pragma: no-cache
 Cache-Control: no-cache
 Accept: application/json, text/plain, */*
-Origin: http://dev.firstdraftgis.com:8000
+Origin: http://firstdraftgis.com:8000
 User-Agent: Mozilla/5.0 (X11; CrOS x86_64 9202.60.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.137 Safari/537.36
 Content-Type: application/json;charset=UTF-8
-Referer: http://dev.firstdraftgis.com:8000/
+Referer: http://firstdraftgis.com:8000/
 Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.8
 
@@ -72,7 +72,7 @@ Request Payload
                     </pre></code></div>
                     <div class="tab-pane" id="angular1" role="tabpanel">
                         <pre><code>
-var url = "https://dev.firstdraftgis.com/api/geolocate_tweet";
+var url = "https://firstdraftgis.com/api/geolocate_tweet";
 var tweet_text = "Flood-risk areas in Bekasi likely to increase due to overflowing streams: Agency - Jakarta Post";
 var data = { text: tweet_text };
 $http.post(url, data).then(function(response) {
@@ -83,7 +83,7 @@ $http.post(url, data).then(function(response) {
                     <div class="tab-pane" id="python" role="tabpanel"><pre><code>
 from requests import post
 
-url = "https://dev.firstdraftgis.com/api/geolocate_tweet"
+url = "https://firstdraftgis.com/api/geolocate_tweet"
 tweet_text = "Flood-risk areas in Bekasi likely to increase due to overflowing streams: Agency - Jakarta Post"
 data = {"text": tweet_text}
 response = post(url, data).json()
@@ -104,7 +104,7 @@ print "longitude:", response.longitude
             var app = angular.module('app', []);
             app.controller('Controller', ["$scope", "$http", function($scope, $http) {
                 console.log("starting Controller", $http);
-                $scope.api_endpoint = "https://dev.firstdraftgis.com";
+                $scope.api_endpoint = "https://firstdraftgis.com";
                 $scope.geolocate = function() {
                     var tweet_text = $scope.tweet_text;
                     console.log("geolocating" + tweet_text);
