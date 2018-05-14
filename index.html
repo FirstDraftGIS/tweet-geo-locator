@@ -74,12 +74,12 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.8
 
 Request Payload
-{"text":"Flood-risk areas in Bekasi likely to increase due to overflowing streams: Agency - Jakarta Post"}
+{"text":"Flood-risk areas in Bekasi likely to increase due to overflowing streams"}
                     </pre></code></div>
                     <div class="tab-pane" id="angular1" role="tabpanel">
                         <pre><code>
 var url = "https://firstdraftgis.com/api/geolocate_tweet";
-var tweet_text = "Flood-risk areas in Bekasi likely to increase due to overflowing streams: Agency - Jakarta Post";
+var tweet_text = "Flood-risk areas in Bekasi likely to increase due to overflowing streams";
 var data = { text: tweet_text };
 $http.post(url, data).then(function(response) {
     console.log("latitude:", response.data.latitude);
@@ -90,7 +90,7 @@ $http.post(url, data).then(function(response) {
 from requests import post
 
 url = "https://firstdraftgis.com/api/geolocate_tweet"
-tweet_text = "Flood-risk areas in Bekasi likely to increase due to overflowing streams: Agency - Jakarta Post"
+tweet_text = "Flood-risk areas in Bekasi likely to increase due to overflowing streams"
 data = {"text": tweet_text}
 response = post(url, data).json()
 print "latitude:", response.latitude
