@@ -37,6 +37,12 @@
                     </table>
                 </div>
                 </br>
+                <div ng-if="link" class="text-center">
+                    <a ng-href="{{ link }}" target="_blank">
+                        <button class="btn btn-primary">View Map</button>
+                    </a>
+                </div>
+                </br>
                 </br>
                 <h3>API</h3>
                 <ul class="nav nav-tabs" role="tablist">
@@ -113,7 +119,13 @@ print "longitude:", response.longitude
                             text: tweet_text
                         }).then(function(response) {
                             console.log("response:", response);
-                            $scope.point = response.data;
+                            let point = response.data;
+                            $scope.point = point;
+                            let base = "http://geojson.io/#data=data:application/json,";
+                            let coordinates = [point.longitude, point.latitude];
+                            let geojson = {type: "Point", "coordinates": coordinates};
+                            $scope.link = base + encodeURIComponent(JSON.stringify(geojson));
+                            console.log("link:", $scope.link);
                         });
                     }
                 };
